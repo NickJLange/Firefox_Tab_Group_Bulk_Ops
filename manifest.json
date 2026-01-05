@@ -8,7 +8,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "group-same-site-tabs@njl.dev",
-      "strict_min_version": "57.0"
+      "strict_min_version": "131.0"
     }
   },
   "background": {

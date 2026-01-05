@@ -19,7 +19,7 @@ EXCLUDED_FILES := \
 build: $(XPI_FILE)
 
 $(XPI_FILE):
-	zip -r $(XPI_FILE) . -x $(EXCLUDED_FILES)
+	zip -r $(XPI_FILE) . -x "$(EXCLUDED_FILES)"
 	@echo "Build complete: $(XPI_FILE)"
 
 clean:

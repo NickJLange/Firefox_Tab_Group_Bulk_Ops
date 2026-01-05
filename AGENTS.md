@@ -15,7 +15,7 @@ This project is a Firefox extension named **Group Same Site Tabs**. It provides 
 
 ## Functionality
 - **Grouping**: Tabs are grouped by their hostname.
-- **Base Domain Grouping**: Special handling to group subdomains and complex TLDs together (e.g., `images.google.com` and `google.co.uk` -> `google`).
+- **Base Domain Grouping**: Special handling to group subdomains and complex TLDs together (e.g., `images.google.com` and `www.google.com` -> `google.com`).
 - **Collapsing**: Groups are created collapsed by default, unless the "uncollapsed" variant is used.
 - **Ungrouping**: Can ungroup all tabs at once.
 
