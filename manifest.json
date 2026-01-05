@@ -1,6 +1,16 @@
 {
-  "author": "igorlogius",
-  "homepage_url": "https://github.com/igorlogius/webextensions/tree/main/group-same-site-tabs",
+  "author": "njl",
+  "developer": {
+    "name": "njl",
+    "url": "https://github.com/njl"
+  },
+  "homepage_url": "https://github.com/njl/Firefox_Tab_Group_Bulk_Ops",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "group-same-site-tabs@njl.dev",
+      "strict_min_version": "57.0"
+    }
+  },
   "background": {
     "scripts": [
       "background.js"
