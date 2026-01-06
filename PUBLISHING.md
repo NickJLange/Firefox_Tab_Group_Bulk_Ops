@@ -23,11 +23,12 @@
 
 ## Release Steps
 
-1.  **Package**: Zip the extension files (exclude `.git`, `task.md`, etc.).
-    - `zip -r group-same-site-tabs.zip . -x "*.git*" "task.md" "PUBLISHING.md" "AGENTS.md" "implementation_plan.md" "walkthrough.md"`
+1.  **Package**: Build the extension using Make.
+    - `make build`
+    - This generates `group-same-site-tabs.xpi`.
 2.  **Submit**:
     - Go to [AMO Developer Hub](https://addons.mozilla.org/developers/addon/submit/distribution).
-    - Upload the zip file.
+    - Upload the XPI file.
     - Submit source code (if requested/required).
 3.  **Review**: Wait for Mozilla review.
 
