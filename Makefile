@@ -11,7 +11,7 @@ INCLUDED_FILES := \
 
 build: $(XPI_FILE)
 
-$(XPI_FILE):
+$(XPI_FILE): $(INCLUDED_FILES)
 	zip $(XPI_FILE) $(INCLUDED_FILES)
 	@echo "Build complete: $(XPI_FILE)"
 

@@ -8,7 +8,10 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "group-same-site-tabs@njl.dev",
-      "strict_min_version": "131.0"
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   },
   "background": {
@@ -51,5 +54,5 @@
     "menus",
     "tabGroups"
   ],
-  "version": "1.0.0"
+  "version": "1.0.2"
 }
