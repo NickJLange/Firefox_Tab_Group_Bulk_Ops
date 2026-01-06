@@ -32,7 +32,10 @@ async function grpTabsBySite(all_tabs, sites, useBaseDomain = false) {
     siteMap.set(key, [...new Set([...siteMap.get(key), ...tabIds])]);
   });
 
-  for (const [site, tabIds] of siteMap) {
+  // Sort sites alphabetically before creating groups
+  const sortedSites = Array.from(siteMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+  for (const [site, tabIds] of sortedSites) {
     if (tabIds.length < 2) continue; // Only group if 2+ tabs
     const grpId = await browser.tabs.group({ tabIds });
 
