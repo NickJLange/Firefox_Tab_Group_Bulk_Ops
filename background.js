@@ -32,11 +32,17 @@ async function grpTabsBySite(all_tabs, sites, useBaseDomain = false) {
     siteMap.set(key, [...new Set([...siteMap.get(key), ...tabIds])]);
   });
 
-  // Sort sites alphabetically before creating groups
+  // Sort sites alphabetically and create groups in that order
   const sortedSites = Array.from(siteMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
+  let insertIndex = 0;
   for (const [site, tabIds] of sortedSites) {
     if (tabIds.length < 2) continue; // Only group if 2+ tabs
+    
+    // Move tabs to the insertion index position before grouping
+    await browser.tabs.move(tabIds, { index: insertIndex });
+    insertIndex += tabIds.length;
+    
     const grpId = await browser.tabs.group({ tabIds });
 
     let title = site.startsWith("www.") ? site.slice(4) : site;
