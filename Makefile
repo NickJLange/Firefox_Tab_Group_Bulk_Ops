@@ -2,24 +2,17 @@
 
 EXTENSION_NAME := group-same-site-tabs
 XPI_FILE := $(EXTENSION_NAME).xpi
-EXCLUDED_FILES := \
-	".git/*" \
-	".gitignore" \
-	".DS_Store" \
-	"task.md" \
-	"AGENTS.md" \
-	"PUBLISHING.md" \
-	"implementation_plan.md" \
-	"walkthrough.md" \
-	"Makefile" \
-	"*.xpi"
+INCLUDED_FILES := \
+	manifest.json \
+	background.js \
+	README.md
 
 .PHONY: build clean
 
 build: $(XPI_FILE)
 
 $(XPI_FILE):
-	zip -r $(XPI_FILE) . -x $(EXCLUDED_FILES)
+	zip $(XPI_FILE) $(INCLUDED_FILES)
 	@echo "Build complete: $(XPI_FILE)"
 
 clean:
