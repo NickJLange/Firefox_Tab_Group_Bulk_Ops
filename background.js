@@ -33,7 +33,7 @@ async function grpTabsBySite(all_tabs, sites, useBaseDomain = false) {
   });
 
   for (const [site, tabIds] of siteMap) {
-    if (tabIds.length === 0) continue;
+    if (tabIds.length < 2) continue; // Only group if 2+ tabs
     const grpId = await browser.tabs.group({ tabIds });
 
     let title = site.startsWith("www.") ? site.slice(4) : site;
@@ -96,6 +96,22 @@ async function ungroupAll() {
   }
 }
 
+async function sweepUpOrphanedTabs() {
+  const all_tabs = await browser.tabs.query({
+    currentWindow: true,
+    pinned: false,
+    hidden: false,
+  });
+  const orphanedTabIds = all_tabs.filter((t) => t.groupId === -1).map((t) => t.id);
+  if (orphanedTabIds.length > 1) {
+    const grpId = await browser.tabs.group({ tabIds: orphanedTabIds });
+    browser.tabGroups.update(grpId, {
+      title: "Orphaned",
+      collapsed,
+    });
+  }
+}
+
 browser.menus.create({
   id: "grp-selected",
   title: "Selected Sites",
@@ -150,6 +166,16 @@ browser.menus.create({
   contexts: ["tab"],
   onclick: async () => {
     ungroupAll();
+  },
+});
+
+browser.menus.create({
+  id: "sweep-orphaned",
+  title: "Sweep up Orphaned Tabs",
+  contexts: ["tab"],
+  onclick: async (clickdata) => {
+    collapsed = clickdata.button !== 1;
+    sweepUpOrphanedTabs();
   },
 });
 
