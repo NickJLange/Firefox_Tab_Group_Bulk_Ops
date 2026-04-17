@@ -32,7 +32,7 @@
     "group-selected-uncollapsed": {
       "description": "Group Selected Sites (uncollapsed)"
     },
-    "group-all-unclollapsed": {
+    "group-all-uncollapsed": {
       "description": "Group All Sites (uncollapsed)"
     },
     "group-selected-base": {
@@ -46,13 +46,14 @@
     }
   },
   "icons": {},
-  "description": "Move same site/domain tabs into named collapsed or unclollapsed native tabgroups",
+  "description": "Move same site/domain tabs into named collapsed or uncollapsed native tabgroups",
   "manifest_version": 2,
   "name": "Group Same Site Tabs",
   "permissions": [
     "tabs",
     "menus",
-    "tabGroups"
+    "tabGroups",
+    "clipboardWrite"
   ],
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
