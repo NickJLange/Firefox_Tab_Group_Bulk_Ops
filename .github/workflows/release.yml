@@ -34,4 +34,6 @@ jobs:
           npx web-ext sign \
             --api-key="$AMO_API_KEY" \
             --api-secret="$AMO_API_SECRET" \
-            --channel listed
+            --channel listed \
+            --source-dir . \
+            --ignore-files "Makefile" "PUBLISHING.md" "AGENTS.md" "extension.zip" "*.xpi" ".git/**" ".github/**" ".claude/**" "Firefox_Tab_Group_Bulk_Ops.code-workspace"
