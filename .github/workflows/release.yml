@@ -16,11 +16,12 @@ jobs:
       - name: Build XPI
         run: make build
       
-      - name: Upload XPI to Release
+      - name: Create and Upload Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ github.ref_name }} group-same-site-tabs.xpi
+          gh release create ${{ github.ref_name }} --generate-notes --title "Release ${{ github.ref_name }}" || echo "Release already exists"
+          gh release upload ${{ github.ref_name }} group-same-site-tabs.xpi --clobber
 
       - name: Sign and submit to AMO
         run: |
