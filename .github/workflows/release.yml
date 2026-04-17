@@ -27,8 +27,11 @@ jobs:
           gh release upload ${{ github.ref_name }} group-same-site-tabs.xpi --clobber
 
       - name: Sign and submit to AMO
+        env:
+          AMO_API_KEY: ${{ secrets.AMO_API_KEY }}
+          AMO_API_SECRET: ${{ secrets.AMO_API_SECRET }}
         run: |
           npx web-ext sign \
-            --api-key="${{ secrets.AMO_API_KEY }}" \
-            --api-secret="${{ secrets.AMO_API_SECRET }}" \
+            --api-key="$AMO_API_KEY" \
+            --api-secret="$AMO_API_SECRET" \
             --channel listed
