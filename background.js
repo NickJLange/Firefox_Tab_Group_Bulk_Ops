@@ -179,6 +179,22 @@ browser.menus.create({
 });
 
 browser.menus.create({
+  id: "copy-group-urls",
+  title: "Copy All URLs in Tab Group",
+  contexts: ["tab"],
+  onclick: async (_clickdata, atab) => {
+    if (atab.groupId === -1) return;
+    const allTabs = await browser.tabs.query({
+      currentWindow: true,
+    });
+    const groupUrls = allTabs
+      .filter((t) => t.groupId === atab.groupId)
+      .map((t) => t.url);
+    navigator.clipboard.writeText(groupUrls.join(", "));
+  },
+});
+
+browser.menus.create({
   id: "sweep-orphaned",
   title: "Sweep up Orphaned Tabs",
   contexts: ["tab"],

@@ -21,3 +21,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload ${{ github.ref_name }} group-same-site-tabs.xpi
+
+      - name: Sign and submit to AMO
+        run: |
+          npx web-ext sign \
+            --api-key="${{ secrets.AMO_API_KEY }}" \
+            --api-secret="${{ secrets.AMO_API_SECRET }}" \
+            --channel listed

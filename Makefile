@@ -5,6 +5,7 @@ XPI_FILE := $(EXTENSION_NAME).xpi
 INCLUDED_FILES := \
 	manifest.json \
 	background.js \
+	LICENSE \
 	README.md
 
 .PHONY: build clean
